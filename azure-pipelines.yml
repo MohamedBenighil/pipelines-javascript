@@ -32,4 +32,15 @@ stages:
         replaceExistingArchive: true
     - upload: $(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip
       artifact: drop
-      
+################################## DEPLOYMENT JOB
+
+  - deployment: VMDeploy
+    displayName: Web deploy
+    environment:
+      name:  vmenv
+      resourceType: VirtualMachine
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+          - script: echo my first deployment
