@@ -36,12 +36,9 @@ stages:
 
   - deployment: VMDeploy
     displayName: Web deploy
-    pool:
-      name: Default
-      demands:
-      - agent.name -equals agentdevops
     environment:
       name:  vmenv
+      resourceName: myVM
       resourceType: VirtualMachine
     strategy:
       runOnce:
