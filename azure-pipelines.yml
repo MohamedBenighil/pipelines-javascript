@@ -9,7 +9,18 @@ pool:
 stages:
 - stage: Build
   displayName: Build stage
-  jobs:  
+  jobs:
+  - deployment: VMDeploy
+    displayName: Web deploy
+    environment:
+      name:  vmenv
+      resourceName: myVM
+      resourceType: VirtualMachine
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+          - script: echo my first deployment
   #- job: Build
   #  displayName: Build
   #  steps:
@@ -34,14 +45,4 @@ stages:
   #    artifact: drop
 ################################### DEPLOYMENT JOB
 
-  - deployment: VMDeploy
-    displayName: Web deploy
-    environment:
-      name:  vmenv
-      resourceName: myVM
-      resourceType: VirtualMachine
-    strategy:
-      runOnce:
-        deploy:
-          steps:
-          - script: echo my first deployment
+
